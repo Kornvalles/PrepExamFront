@@ -3,7 +3,8 @@ import facade from "./apiFacade";
 import Planets from "./components/Planets";
 import Films from "./components/Films";
 import Persons from "./components/Persons";
-import Welcome from "./components/Welcome"
+import Welcome from "./components/Welcome";
+import Search from "./components/Search";
 import { BrowserRouter as Router, Route, NavLink, Switch } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
@@ -96,10 +97,11 @@ const Content = () => {
   return (
 
     <Switch>
-      <Route exact path="/"> <Welcome /> </Route>
-      <Route path="/planets"> <Planets /> </Route>
-      <Route path="/persons"> <Persons /> </Route>
-      <Route path="/films"> <Films /> </Route>
+      <Route exact path="/"><Welcome /></Route>
+      <Route path="/planets"><Planets /></Route>
+      <Route path="/persons"><Persons /></Route>
+      <Route path="/films"><Films /></Route>
+      <Route path="/search"><Search/></Route>
     </Switch>
 
   )
