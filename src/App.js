@@ -89,6 +89,7 @@ const Header = () => {
       <li><NavLink activeClassName="active" to="/planets">Planets</NavLink></li>
       <li><NavLink activeClassName="active" to="/persons">Persons</NavLink></li>
       <li><NavLink activeClassName="active" to="/films">Films</NavLink></li>
+      <li><NavLink activeClassName="active" to="/search">Search</NavLink></li>
     </ul>
   );
 };

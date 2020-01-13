@@ -7,46 +7,49 @@ const NameForm = () => {
 
     useEffect(() => {
         async function fetchData() {
-          const res = await fetch("localhost:8080/PrepExamBack/api/person/all");
-          res
-            .json()
-            .then(res => setPersonList(res))
-            .catch(err => setErrors(err));
+            const res = await fetch("http://localhost:8080/PrepExamBack/api/person/all");
+            res
+                .json()
+                .then(res => setPersonList(res))
+                .catch(err => setErrors(err));
         }
-    
         fetchData();
-      },[]);
+    }, []);
 
     function handleChange(event) {
         const target = event.target;
         //const id = target.id;
         const value = target.value;
-        setFilter({ value });
+        setFilter(value);
     }
     function handleSubmit(event) {
         event.preventDefault();
     }
 
-    useEffect(() => {
-        function filterPerson() {
-            const lowerCaseFilter = filter.toLowerCase();
-            PersonList.filter(p => {
-                return (
-                    
-                )
-            })
-        }
-        filterPerson();
-    },[])
+    const filteredPerson = PersonList.filter((person) => {
+
+        return person.firstName.toLowerCase().indexOf(filter.toLowerCase()) !== -1
+    })
+
 
     return (
         <div>
             <span>Has error: {JSON.stringify(hasError)}</span>
             <form onChange={handleChange} onSubmit={handleSubmit}>
-                <input type="text" placeholder="E-mail" />
+                <input type="text" placeholder="Indtast her..." />
                 <input type="submit" value="Search" />
             </form>
-            <p id="searchResult"></p>
+            <ul>
+                {filteredPerson.map((person) => {
+
+                    const personString = person.firstName + ", " + person.lastName
+
+                    return (
+
+                        <li key={person.id}>{personString}</li>
+                    )
+                })}
+            </ul>
         </div>
     );
 };
